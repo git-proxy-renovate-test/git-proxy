@@ -46,7 +46,7 @@ services:
       - init
 
   otel-collector:
-    image: otel/opentelemetry-collector-contrib:0.115.1
+    image: otel/opentelemetry-collector-contrib:0.117.0@sha256:631637f7b33668eda594011d5f173100a3fe245da7fa8dae0885b368da4d0a6e
     volumes:
       - ./dev/otel-collector-config.yaml:/etc/otelcol-contrib/config.yaml
     depends_on:
@@ -54,7 +54,7 @@ services:
       - tempo
 
   promtail:
-    image: grafana/promtail:3.3.1
+    image: grafana/promtail:3.3.2@sha256:cb4990801ec58975c5e231057c2bcf204c85fac428eec65ad66e0016c64b9608
     command:
       - -config.file=/etc/promtail/config.yaml
       - -log.level=warn
@@ -66,7 +66,7 @@ services:
 
   # traces
   tempo:
-    image: grafana/tempo:2.6.1
+    image: grafana/tempo:2.7.0@sha256:12e904cc509a8e0bd87815e0bc719b6167933bc3f2532716a85811af967780f6
     command:
       - -config.file=/etc/tempo.yaml
       - -log.level=warn
@@ -79,7 +79,7 @@ services:
 
   # metrics
   prometheus:
-    image: prom/prometheus:v3.0.1
+    image: prom/prometheus:v3.1.0@sha256:6559acbd5d770b15bb3c954629ce190ac3cbbdb2b7f1c30f0385c4e05104e218
     command:
       - --config.file=/etc/prometheus.yaml
       - --enable-feature=exemplar-storage
@@ -95,7 +95,7 @@ services:
 
   # logs
   loki:
-    image: grafana/loki:3.3.1
+    image: grafana/loki:3.3.2@sha256:8af2de1abbdd7aa92b27c9bcc96f0f4140c9096b507c77921ffddf1c6ad6c48f
     command:
       - -config.file=/etc/loki/loki.yaml
       - -log.level=warn
